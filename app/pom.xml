@@ -32,7 +32,28 @@
     <build>
         <plugins>
             <!-- Здесь прописать ваш плагин -->
-
+            <plugin>
+                <groupId>ru.itmo</groupId>
+                <artifactId>hello-maven-plugin</artifactId>
+                <version>1.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>deps</goal>
+                            <goal>git</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.9.0</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
