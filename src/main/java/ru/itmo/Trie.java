@@ -41,7 +41,6 @@ public class Trie {
 
 	/**
 	 * Get String in trie, next after [element] in k elements
-	 * Expected complexity: O(|trie depth|)
 	 * @return found String or null
 	 */
 	public String nextString(String element, int k) {
