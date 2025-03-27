@@ -125,7 +125,7 @@ public class Trie {
         List<String> strings = getSortedStrings();
         int targetIndex = findTargetIndex(strings, element, k);
 
-        if (targetIndex < strings.size() && contains(strings.get(targetIndex))) {
+        if (targetIndex < strings.size()) {
             return strings.get(targetIndex);
         }
 
@@ -159,7 +159,9 @@ public class Trie {
      * @param result A list to store all the collected strings.
      */
     private void collectStrings(Node node, StringBuilder prefix, List<String> result) {
-        result.add(prefix.toString());
+        if (node.isTerminal) {
+            result.add(prefix.toString());
+        }
 
         for (char c : node.children.keySet()) {
             prefix.append(c);
