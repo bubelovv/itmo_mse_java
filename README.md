@@ -1,33 +1,39 @@
-# Репозиторий с материалами по курсу Java
+# Мультимножество
 
-## Порядок сдачи заданий
+* Множество, допускающее включение одного и того же элемента по нескольку раз
 
-1. Клонировать данный репозиторий и запушить в СВОЙ НОВЫЙ ПРИВАТНЫЙ репозиторий. Добавляем оригинальный репозиторий в качестве `upstream`
+# Требования
+
+* Необходимо написать класс `Multiset` с учетом комментариев
+* Стандартные операции коллекций (`add`/`contains`/`remove` и т.д.) должны работать за то же время, что и аналогичные методы в `java.util.HashSet`
+* Java Stream API использовать нельзя
+* Стандартные коллекции использовать можно
+
+---
+
+# Подробности
+
+* множество должно позволять хранить `null`
+* `remove` удаляет только одно вхождение объекта
+* `size` возвращает общее количество вхождений
+* В возвращаемом `Set` достаточно реализовать только `iterator` и `size`
+* Все возвращаемые итераторы должны поддерживать методы `hasNext`/`next`/`remove`
+* Все возвращаемые итераторы должны обходить элементы в порядке их добавления
+* Порядок элементов в мультимножестве определяется по первому добавлению элемента
 ```
-git clone git@github.com:DKARAGODIN/ITMO_MSE_JAVA.git
-git remote remove origin
-git remote add origin *URL TO YOUR NEW PRIVATE REPO*
-git remote add upstream git@github.com:DKARAGODIN/ITMO_MSE_JAVA.git
+Multiset<String> set = new Multiset<String>(Arrays.asList("a", "b", "a"));
+// Assume that println prints elements using `iterator()`
+System.out.println(set) // ["a", "a", "b"]
+System.out.println(set.elementSet()) // ["a", "b"]
+System.out.println(set.entrySet()) // [("a", 2), ("b", 1)]
 ```
+* Удаление элемента через `Multiset.iterator().remove()` удаляет только одно вхождение элемента
+* `elementSet` и `entrySet` создают _view_ на исходное мультимножество
+* Добавление/удаление элемента в `Multiset` меняет `elementSet` и `entrySet`
+* У итераторов `elementSet` и `entrySet` должен работать `remove`
 
-2. Домашки выкладываются в ветки вида `task-N-title`, контрольные в ветки `control-N-title`
 
-3. Для сдачи задания требуется добавить ветку из основного репозитория в свой и запушить в свой репозиторий
+---
+# Примечания
 
-```
-git fetch upstream
-git checkout upstream/task-N-title
-git checkout -b task-N-title
-git push origin task-N-title
-```
-
-4. Создать ветку `task-N-title-dev`, в которую добавляется решение
-
-```
-git checkout -b task-N-title-dev
-```
-
-5. При готовности задания запушить `dev` ветку и создать Pull Request. В качестве reviewr назначить меня.
-   Заголовок PR должен быть в следующем виде: **Фамилия Имя. Task N** или **Фамилия Имя. Control N**.
-
-6. Требования к ПО: Java 21, Maven 3.9.9. 
+* См. `LinkedHashMap` и ее внутреннюю реализацию итераторов
