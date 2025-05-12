@@ -1,0 +1,11 @@
+<Context>
+    <Resource
+        name="jdbc/cars_db"
+        auth="Container"
+        type="javax.sql.DataSource"
+        driverClassName="org.postgresql.Driver"
+        url="jdbc:postgresql://localhost:5432/cars_db"
+        username="postgres"
+        password="postgres"
+    />
+</Context>
